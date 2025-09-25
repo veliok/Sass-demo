@@ -1,0 +1,63 @@
+@use "variables";
+
+@mixin base-container {
+    width: 100%;
+    max-width: variables.$max-width;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    box-sizing: border-box; 
+    background-color: variables.$primary-color;
+    color: variables.$text-color;
+}
+
+@mixin grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 300px; 
+    align-items: start;
+	width: 100%;
+    box-sizing: border-box;
+}
+
+@mixin base-button {
+    height: 40px;
+    width: 150px;
+    background-color: variables.$accent-color;
+    color: variables.$text-light;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken(variables.$accent-color, 10%);
+    }
+}
+
+@mixin nav-list {
+    display: flex;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+
+    a {
+        text-decoration: none;
+        color: variables.$text-color;
+
+        &:hover {
+            color: lighten(variables.$accent-color, 10%);
+        }
+    }
+}
+
+@mixin responsive($breakpoint) {
+	@if $breakpoint == mobile {
+		@media (max-width: 768px) { @content; }
+	}
+}
